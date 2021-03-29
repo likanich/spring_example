@@ -1,8 +1,10 @@
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class HelloWorld {
     public static void main(String... args) {
-        MessageRenderer mr = new StandartOutMessageRenderer();
-        MessageProvider mp = new HelloWorldMessageProvider();
-        mr.setMessageProvider(mp);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/app-context.xml");
+        MessageRenderer mr = ctx.getBean("renderer", MessageRenderer.class);
         mr.render();
     }
 }
